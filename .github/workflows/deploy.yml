@@ -21,9 +21,10 @@ jobs:
         script: |
           cd /home/ec2-user || exit
           if [ ! -d electronics-app ]; then
-            git clone https://github.com/USERNAME/electronics-app.git
+            git clone https://github.com/imraj4u9-abc/Electronics.git
           fi
           cd electronics-app
           git pull
           docker compose down
           docker compose up -d --build
+
