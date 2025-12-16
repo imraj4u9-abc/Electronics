@@ -20,7 +20,7 @@ jobs:
         key: ${{ secrets.EC2_KEY }}
         script: |
          set -e
-          cd /home/ec2-user || exit
+          cd ~
           if [ ! -d electronics-app ]; then
             git clone https://github.com/imraj4u9-abc/Electronics.git electronics-app
           fi
@@ -31,6 +31,7 @@ jobs:
           git pull
           docker compose down
           docker compose up -d --build
+
 
 
 
