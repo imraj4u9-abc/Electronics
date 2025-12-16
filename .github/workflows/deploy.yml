@@ -24,7 +24,11 @@ jobs:
             git clone https://github.com/imraj4u9-abc/Electronics.git
           fi
           cd electronics-app
+          sudo apt-get update
+          sudo apt-get install docker.io -y
+          sudo apt-get install docker-compose-plugin -y
           git pull
           docker compose down
           docker compose up -d --build
+
 
