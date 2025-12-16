@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+    environment:
+      DB_SERVER: "database-1.c7swcswkad0g.ap-northeast-1.rds.amazonaws.com"
+      DB_NAME: "electronics"
+      DB_USER: "admin"
+      DB_PASS: "Sonali-12398"

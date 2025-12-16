@@ -1,3 +1,27 @@
+<?php include 'db.php'; ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Electronics Online</title>
+    <style>
+        body { font-family: Arial; background:#f4f4f4; }
+        .box {
+            width:400px; margin:50px auto; padding:20px;
+            background:#fff; border-radius:10px;
+        }
+        input, button {
+            width:100%; padding:10px; margin-top:10px;
+        }
+        button {
+            background:#28a745; color:#fff;
+            border:none; cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,17 +44,38 @@
     </nav>
 </header>
 
+<div class="box">
+    <h2>Electronics Online</h2>
+
+    <form method="POST">
+        <input type="text" name="ename" placeholder="Enter electronic device" required>
+        <button type="submit" name="search">Submit</button>
+    </form>
+
+    <?php
+    if (isset($_POST['search'])) {
+        $ename = $_POST['ename'];
+
+        $stmt = $conn->prepare(
+            "SELECT type, price FROM electronics WHERE electronics_name = ?"
+        );
+        $stmt->execute([$ename]);
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($row) {
+            echo "<h3>Type: {$row['type']}</h3>";
+            echo "<h3>Price: ₹{$row['price']}</h3>";
+        } else {
+            echo "<p>No product found</p>";
+        }
+    }
+    ?>
+</div>
+
 <!-- HOME -->
 <section id="home" class="section home">
-    <div class="home-content">
-        <h2>Find the Best Electronic Devices</h2>
-        <p>Search for the latest and best quality electronics online.</p>
-
-        <form class="search-box">
-            <input type="text" placeholder="Enter electronic device" required>
-            <button type="submit">Submit</button>
-        </form>
-    </div>
+    
 
     <div class="home-image">
         <img src="https://images.unsplash.com/photo-1518770660439-4636190af475" alt="Electronics">
@@ -73,6 +118,10 @@
 <footer>
     <p>© 2025 Electronics Online. All Rights Reserved.</p>
 </footer>
+
+</body>
+</html>
+
 
 </body>
 </html>

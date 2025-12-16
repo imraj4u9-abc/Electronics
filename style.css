@@ -125,3 +125,65 @@ footer {
     text-align: center;
     padding: 15px;
 }
+body {
+    font-family: Arial;
+    background: #f4f6f8;
+    text-align: center;
+}
+
+input {
+    padding: 10px;
+    width: 250px;
+}
+
+button {
+    padding: 10px 20px;
+    background: #2c5364;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+table {
+    margin: 20px auto;
+    border-collapse: collapse;
+    width: 60%;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ccc;
+}
+
+th {
+    background: #203a43;
+    color: white;
+}
+
+.result-box {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    border-collapse: collapse;
+    width: 60%;
+    background: white;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+th {
+    background-color: #203a43;
+    color: white;
+}
+
+.error {
+    color: red;
+    margin-top: 15px;
+}
