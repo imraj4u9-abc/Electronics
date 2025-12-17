@@ -24,8 +24,10 @@ jobs:
           # Install git first
           sudo yum update
           sudo yum install git -y
-          sudo yum install docker.io -y
-          sudo yum install docker-compose-plugin -y
+          sudo yum update -y
+          sudo yum install docker -y
+          sudo systemctl start docker
+          sudo systemctl enable docker
           if [ ! -d electronics-app ]; then
             git clone https://github.com/imraj4u9-abc/Electronics.git electronics-app
           fi
@@ -33,6 +35,7 @@ jobs:
           git pull
           docker compose down
           docker compose up -d --build
+
 
 
 
