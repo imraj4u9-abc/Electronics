@@ -22,10 +22,10 @@ jobs:
          set -e
           cd ~
           # Install git first
-          sudo apt-get update
-          sudo apt-get install git -y
-          sudo apt-get install docker.io -y
-          sudo apt-get install docker-compose-plugin -y
+          sudo yum update
+          sudo yum install git -y
+          sudo yum install docker.io -y
+          sudo yum install docker-compose-plugin -y
           if [ ! -d electronics-app ]; then
             git clone https://github.com/imraj4u9-abc/Electronics.git electronics-app
           fi
@@ -33,6 +33,7 @@ jobs:
           git pull
           docker compose down
           docker compose up -d --build
+
 
 
 
