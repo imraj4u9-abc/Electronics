@@ -1,13 +1,25 @@
-FROM php:8.0-apache
+FROM php:8.2-apache
 
-# Install dependencies
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    gnupg \
+    gnupg2 \
+    curl \
     unixodbc \
-    unixodbc-dev
+    unixodbc-dev \
+    libgssapi-krb5-2
 
-# Install SQL Server drivers
-RUN pecl install sqlsrv pdo_sqlsrv \
+# Add Microsoft repo
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
+    && curl https://packages.microsoft.com/config/debian/12/prod.list \
+       > /etc/apt/sources.list.d/mssql-release.list
+
+# Install Microsoft ODBC Driver
+RUN apt-get update \
+    && ACCEPT_EULA=Y apt-get install -y msodbcsql18
+
+# Install SQL Server PHP extensions
+RUN pecl channel-update pecl.php.net \
+    && pecl install sqlsrv pdo_sqlsrv \
     && docker-php-ext-enable sqlsrv pdo_sqlsrv
 
 # Enable Apache rewrite
